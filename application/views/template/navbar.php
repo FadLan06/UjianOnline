@@ -121,7 +121,7 @@
                 <ul class="navigation-menu">
 
                     <li class="has-submenu">
-                        <a href="index.html"><i class="mdi mdi-airplay"></i>Dashboard</a>
+                        <a href="<?= base_url() ?>"><i class="mdi mdi-airplay"></i>Dashboard</a>
                     </li>
 
                     <li class="has-submenu">
@@ -249,6 +249,10 @@
                                 </ul>
                             </li>
                         </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="<?= base_url('Data') ?>"><i class="mdi mdi-airplay"></i>Data</a>
                     </li>
 
                 </ul>
