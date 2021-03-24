@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-9">
                 <div class="card card-body">
                     <table class="table">
                         <thead>
@@ -87,6 +87,7 @@
     }
 
     function tambah() {
+        var id_guru = document.getElementById('id_guru').value;
         var nip = document.getElementById('nip').value;
         var nama = document.getElementById('nama').value;
         var no_hp = document.getElementById('no_hp').value;
@@ -96,18 +97,46 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 dataList();
+                resetData();
             }
         };
+
+        var post = 'nip=' + nip + '&nama=' + nama + '&no_hp=' + no_hp;
+        if(this.value == 'Ubah'){
+            post += '$id_guru' + id_guru;
+        }
+
         xhttp.open("POST", "<?= base_url('data/tambah_data') ?>", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhttp.send('nip=' + nip + '&nama=' + nama + '&no_hp=' + no_hp);
+        xhttp.send(post);
     }
 
     function edit() {
-        alert(this.value);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('formInput').innerHTML = this.responseText;
+                dataList();
+            }
+        };
+        xhttp.open("GET", "<?= base_url('Data/Ubah/') ?>" + this.value, true);
+        xhttp.send();
     }
 
     function hapus() {
-        alert(this.value);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                dataList();
+            }
+        };
+        xhttp.open("GET", "<?= base_url('Data/Hapus/') ?>" + this.value, true);
+        xhttp.send();
+    }
+
+    function resetData() {
+        document.getElementById('nip').value = '';
+        document.getElementById('nama').value = '';
+        document.getElementById('no_hp').value = '';
     }
 </script>

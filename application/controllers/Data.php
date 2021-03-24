@@ -51,4 +51,30 @@ class Data extends CI_Controller
 
         $this->db->insert('tb_guru', $data);
     }
+
+    function hapus($id)
+    {
+        $this->db->where('id_guru', $id);
+        $this->db->delete('tb_guru');
+    }
+
+    function ubah($id)
+    {
+        $row = $this->db->get_where('tb_guru',['id_guru' => $id])->row();
+
+        echo '
+            <div class="form-group">
+                <input type="number" class="form-control" id="nip" value="'. $row->nip .'" placeholder="NIP">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="nama" value="'. $row->nama_guru .'" placeholder="NAMA LENGKAP">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="no_hp" value="'. $row->no_hp .'" placeholder="NOMOR HP">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" id="btnUbah" value="ubah">Ubah</button>
+            </div>
+        ';
+    }
 }
