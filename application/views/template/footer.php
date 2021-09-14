@@ -64,6 +64,7 @@
     });
 </script>
 
+<script src="<?= base_url() ?>assets/js/ujian.js"></script>
 </body>
 
 </html>

@@ -22,4 +22,10 @@ class Ujian extends CI_Controller
         $this->load->view('ujian/index', $data);
         $this->load->view('template/footer', $data);
     }
+
+    function getSoal()
+    {
+        $data = $this->db->get('tb_soal')->result_array();
+        echo json_encode($data);
+    }
 }
