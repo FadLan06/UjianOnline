@@ -26,9 +26,11 @@ class Data extends CI_Controller
     {
         $data = $this->db->get('tb_guru')->result();
 
+        $no = 1;
         foreach ($data as $dt) {
             echo "
-                <tr>
+                <tr align='center'>
+                    <td width='5%'>" . $no++ . "</td>
                     <td>" . $dt->nip . "</td>
                     <td>" . $dt->nama_guru . "</td>
                     <td>" . $dt->no_hp . "</td>
@@ -41,7 +43,7 @@ class Data extends CI_Controller
         }
     }
 
-    function tambah_data()
+    function simpan()
     {
         $data = [
             'nip' => $this->input->post('nip'),
@@ -58,23 +60,38 @@ class Data extends CI_Controller
         $this->db->delete('tb_guru');
     }
 
-    function ubah($id)
+    function edit($id)
     {
-        $row = $this->db->get_where('tb_guru',['id_guru' => $id])->row();
+        $row = $this->db->get_where('tb_guru', ['id_guru' => $id])->row();
 
         echo '
             <div class="form-group">
-                <input type="number" class="form-control" id="nip" value="'. $row->nip .'" placeholder="NIP">
+                <input type="hidden" class="form-control" value="' . $row->id_guru . '" id="id_guru">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="nama" value="'. $row->nama_guru .'" placeholder="NAMA LENGKAP">
+                <input type="number" class="form-control" id="nip" value="' . $row->nip . '" placeholder="NIP">
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" id="no_hp" value="'. $row->no_hp .'" placeholder="NOMOR HP">
+                <input type="text" class="form-control" id="nama" value="' . $row->nama_guru . '" placeholder="NAMA LENGKAP">
             </div>
             <div class="form-group">
-                <button class="btn btn-success" id="btnUbah" value="ubah">Ubah</button>
+                <input type="number" class="form-control" id="no_hp" value="' . $row->no_hp . '" placeholder="NOMOR HP">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" id="btnSimpan" value="ubah">Ubah</button>
             </div>
         ';
+    }
+
+    function ubah()
+    {
+        $data = [
+            'nip' => $this->input->post('nip'),
+            'nama_guru' => $this->input->post('nama'),
+            'no_hp' => $this->input->post('no_hp'),
+        ];
+
+        $this->db->where('id_guru', $this->input->post('id_guru'));
+        $this->db->update('tb_guru', $data);
     }
 }

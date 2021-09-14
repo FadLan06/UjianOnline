@@ -255,6 +255,9 @@
                         <a href="<?= base_url('Data') ?>"><i class="mdi mdi-airplay"></i>Data</a>
                     </li>
 
+                    <li class="has-submenu">
+                        <a href="<?= base_url('Ujian') ?>"><i class="mdi mdi-airplay"></i>Ujian</a>
+                    </li>
                 </ul>
                 <!-- End navigation menu -->
             </div> <!-- end #navigation -->

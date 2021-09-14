@@ -33,16 +33,17 @@
                             <input type="number" class="form-control" id="no_hp" placeholder="NOMOR HP">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success" id="btnSimpan">SImpan</button>
+                            <button class="btn btn-success" id="btnSimpan" value="simpan">Simpan</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="card card-body">
-                    <table class="table">
+                    <table class="table" width="100%">
                         <thead>
-                            <tr>
+                            <tr align="center">
+                                <th width="5%">#</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>No HP</th>
@@ -98,15 +99,17 @@
             if (this.readyState == 4 && this.status == 200) {
                 dataList();
                 resetData();
+                document.getElementById('btnSimpan').value = 'simpan';
+                document.getElementById('btnSimpan').innerHTML = 'Simpan';
             }
         };
 
         var post = 'nip=' + nip + '&nama=' + nama + '&no_hp=' + no_hp;
-        if(this.value == 'Ubah'){
-            post += '$id_guru' + id_guru;
+        if (this.value == 'ubah') {
+            post += '&id_guru=' + id_guru;
         }
 
-        xhttp.open("POST", "<?= base_url('data/tambah_data') ?>", true);
+        xhttp.open("POST", "<?= base_url('data/') ?>" + this.value, true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(post);
     }
@@ -119,7 +122,7 @@
                 dataList();
             }
         };
-        xhttp.open("GET", "<?= base_url('Data/Ubah/') ?>" + this.value, true);
+        xhttp.open("GET", "<?= base_url('Data/Edit/') ?>" + this.value, true);
         xhttp.send();
     }
 
