@@ -35,8 +35,9 @@
                         <div id="pertanyaan"></div>
                         <div id="pilihan"></div>
                     </div>
-                    <div class="card-footer">
-                        <button class="btn btn-info float-right" id="lanjut">Lanjut</button>
+                    <div class="card-footer" align="center">
+                        <button class="btn btn-danger" id="kembali">Kembali</button>
+                        <button class="btn btn-danger" id="lanjut">Lanjut</button>
                     </div>
                 </div>
             </div>
