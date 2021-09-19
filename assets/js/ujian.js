@@ -11,12 +11,25 @@ $(document).ready(function () {
       let jawab = [];
 
       $(document).ready(function () {
+        $("#btnSelesai").hide();
         setPertanyaan();
       });
 
       function setPertanyaan() {
-        document.getElementById("pertanyaan").innerHTML =
-          data[data_per]["pertanyaan"];
+        if (data_per == 0) {
+          $("#btnKembali").hide();
+          $("#lanjut").show();
+          $("#btnSelesai").hide();
+        }
+
+        if (data_per == data.length - 1) {
+          $("#lanjut").hide();
+          $("#btnSelesai").show();
+        }
+
+        no = data_per + 1;
+
+        document.getElementById("pertanyaan").innerHTML = no +'. '+ data[data_per]["pertanyaan"];
         var html = "";
         var i;
         var opsi = ["a", "b", "c", "d", "e"];
@@ -24,8 +37,8 @@ $(document).ready(function () {
         for (i = 0; i < 5; i++) {
           // html += data[data_per]['opsi_'+opsi[i]];
           html +=
-            "<div class='funkyradio_" + opsi[i] + "'><div class='funkyradio-success'><input type='radio' name='jawaban' data-jawab='" + data[data_per]['jawaban'] + "' data-id='" + opsi[i] + "' id='jawaban" + opsi[i] + "' value='' /><label for='jawaban" + opsi[i] + "'>" + data[data_per]["opsi_" + opsi[i]] + "</label></div></div>";
-
+            "<div class='funkyradio_" + opsi[i] + "'><div class='funkyradio-success'><input type='radio' name='jawaban' data-id='" + opsi[i] + "' id='jawaban" + opsi[i] + "' value='' /><label for='jawaban" + opsi[i] + "'>" +
+            data[data_per]["opsi_" + opsi[i]] + "</label></div></div>";
         }
         document.getElementById("pilihan").innerHTML = html;
       }
@@ -35,12 +48,20 @@ $(document).ready(function () {
 
         simpan();
 
-        if (data_per > data.length - 1) {
-          stop();
-        }
+        $("#btnSelesai").hide();
+        $("#btnKembali").show();
 
-        riset();
+        // riset();
         setPertanyaan();
+      });
+
+      $("#btnKembali").on("click", function () {
+        data_per--;
+        setPertanyaan();
+      });
+
+      $("#btnSelesai").on("click", function () {
+        stop();
       });
 
       function riset() {
@@ -50,16 +71,16 @@ $(document).ready(function () {
       function stop() {
         checkScore();
         alert("total = " + total);
-        return
+        return;
       }
 
       function simpan() {
         const answer = document.querySelector('input[name="jawaban"]:checked');
         if (answer != null) {
-          save.push(answer.getAttribute('data-id'));
-          jawab.push(answer.getAttribute('data-jawab'));
+          save.push(answer.getAttribute("data-id"));
+          jawab.push(0);
         } else {
-          save.push(0)
+          save.push(0);
         }
       }
 

@@ -36,8 +36,9 @@
                         <div id="pilihan"></div>
                     </div>
                     <div class="card-footer" align="center">
-                        <button class="btn btn-danger" id="kembali">Kembali</button>
+                        <button class="btn btn-danger" id="btnKembali">Kembali</button>
                         <button class="btn btn-danger" id="lanjut">Lanjut</button>
+                        <button class="btn btn-success" id="btnSelesai">Selesai</button>
                     </div>
                 </div>
             </div>

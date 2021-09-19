@@ -60,7 +60,7 @@
 
                         <div class="form-group text-center row m-t-20">
                             <div class="col-12">
-                                <button class="btn btn-danger btn-block waves-effect waves-light" type="submit">M A S U K</button>
+                                <button class="btn btn-info btn-block waves-effect waves-light" type="submit">M A S U K</button>
                             </div>
                         </div>
 
